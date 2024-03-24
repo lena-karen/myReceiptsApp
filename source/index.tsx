@@ -1,19 +1,27 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { useColorScheme } from 'react-native';
-import { dark, light } from './constants';
+import { SafeAreaView, StyleSheet, useColorScheme } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+
+import { colors, dark, light } from './constants';
 import { RootNavigation } from './screens/navigation/RootNavigation';
 
 export const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <>
-      <NavigationContainer theme={isDarkMode ? dark : light}>
-        <RootNavigation />
-      </NavigationContainer>
-    </>
+    <LinearGradient colors={[colors._D3841C, colors._FFFFFF]} style={styles.container}>
+      <SafeAreaView style={styles.container}>
+        <NavigationContainer theme={isDarkMode ? dark : light}>
+          <RootNavigation />
+        </NavigationContainer>
+      </SafeAreaView>
+    </LinearGradient>
   );
 };
 
 export default App;
+
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+});
